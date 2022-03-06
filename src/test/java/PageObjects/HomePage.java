@@ -32,17 +32,10 @@ public class HomePage extends BaseClass {
     }
 
     public void checkSearchResults(String text) {
+        base.driver.findElements(searchResults).forEach(title ->
+                Assertions.assertTrue(title.getText().toLowerCase().contains(text),
+                        "'" +title.getText() +"'" + " " + "result does not contain" + " " +"'" + text + "'"));
 
-        ArrayList resultsArray = new ArrayList();
-        base.driver.findElements(searchResults).forEach(el ->
-                resultsArray.add(el.getText().toLowerCase(Locale.ROOT))
-        );
-        resultsArray.forEach(title ->
-                Assertions.assertTrue(title.toString().contains(text),
-                        "'" +title +"'" + " " + "result does not contain" + " " +"'" + text + "'"));
 
-        System.out.println(resultsArray);
     }
-
-
 }
